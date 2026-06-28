@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans text-body antialiased;
+  }
+
+  /* Carved, tight display type — DESIGN.md hero/section scale. */
+  h1, h2, h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  /* Keyboard focus: focus-blue ring everywhere, per DESIGN.md semantic color. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-focus-blue ring-offset-2 ring-offset-canvas;
+  }
+
+  ::selection {
+    @apply bg-deep-green text-white;
+  }
+}
+
+@layer components {
+  /* Uppercase technical label — agent names, system/status markers. */
+  .mono-label {
+    @apply font-mono text-mono-label uppercase tracking-[0.28px] text-slate;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-6 md:px-10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

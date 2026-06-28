@@ -1,0 +1,159 @@
+{
+    "success":  true,
+    "message":  "Article created",
+    "data":  {
+                 "id":  "b9d40818-2529-483a-8af0-85d005dc10d4",
+                 "topic":  "The role of mycorrhizal fungi in forest ecosystems",
+                 "articleType":  "Explainer",
+                 "audience":  "General public",
+                 "status":  "completed",
+                 "createdAt":  "2026-06-28T13:28:38.859Z",
+                 "title":  "Mycorrhizal Fungi: Forest Ecosystem Essentials",
+                 "slug":  "mycorrhizal-fungi-forest-ecosystems",
+                 "metaDescription":  "Explore the vital role of mycorrhizal fungi in forest ecosystems. This article provides an overview of their importance, despite limitations in specific details.",
+                 "finalMarkdown":  "# Mycorrhizal Fungi: Forest Ecosystem Essentials\n\nThis explainer aims to shed light on the crucial role mycorrhizal fungi play in the health and functioning of forest ecosystems. However, due to the absence of verified claims, specific details about their functions and interactions cannot be provided at this time.\n\n## The Symbiotic Relationship\n\nInformation regarding the symbiotic relationship between mycorrhizal fungi and trees is not available from the provided verified claims.\n\n## Benefits to Trees\n\nDetails on how mycorrhizal fungi benefit trees, such as nutrient uptake or disease resistance, are not available from the provided verified claims.\n\n## Benefits to Fungi\n\nInformation about the benefits mycorrhizal fungi receive from their association with trees is not available from the provided verified claims.\n\n## Importance for Forest Health\n\nSpecific insights into the overall importance of mycorrhizal fungi for forest health, resilience, and biodiversity are not available from the provided verified claims.\n\n## Conclusion\n\nWhile mycorrhizal fungi are known to be vital components of forest ecosystems, a detailed explanation of their specific roles and impacts cannot be provided based on the currently available verified claims.\n\n## References",
+                 "seo":  {
+                             "title":  "Mycorrhizal Fungi: Forest Ecosystem Essentials",
+                             "metaDescription":  "Explore the vital role of mycorrhizal fungi in forest ecosystems. This article provides an overview of their importance, despite limitations in specific details.",
+                             "slug":  "mycorrhizal-fungi-forest-ecosystems",
+                             "keywords":  [
+                                              "mycorrhizal fungi",
+                                              "forest ecosystems",
+                                              "forest health",
+                                              "symbiotic relationship",
+                                              "fungi",
+                                              "trees"
+                                          ],
+                             "headings":  [
+                                              "The Symbiotic Relationship",
+                                              "Benefits to Trees",
+                                              "Benefits to Fungi",
+                                              "Importance for Forest Health",
+                                              "Conclusion"
+                                          ]
+                         },
+                 "sources":  [
+                                 {
+                                     "title":  "Overview of The role of mycorrhizal fungi in forest ecosystems",
+                                     "url":  "https://example.com/overview",
+                                     "snippet":  "A broad introduction to The role of mycorrhizal fungi in forest ecosystems and why it matters in 2026.",
+                                     "publisher":  "",
+                                     "published_date":  "2026-01-15",
+                                     "credibility_notes":  ""
+                                 },
+                                 {
+                                     "title":  "The role of mycorrhizal fungi in forest ecosystems: recent developments",
+                                     "url":  "https://example.org/recent",
+                                     "snippet":  "Recent data and milestones related to The role of mycorrhizal fungi in forest ecosystems.",
+                                     "publisher":  "",
+                                     "published_date":  "2026-03-02",
+                                     "credibility_notes":  ""
+                                 },
+                                 {
+                                     "title":  "Understanding The role of mycorrhizal fungi in forest ecosystems",
+                                     "url":  "https://example.net/understanding",
+                                     "snippet":  "A practical explainer covering the fundamentals of The role of mycorrhizal fungi in forest ecosystems.",
+                                     "publisher":  "",
+                                     "published_date":  "2025-11-20",
+                                     "credibility_notes":  ""
+                                 }
+                             ],
+                 "researchNotes":  [
+                                       "The provided search results are placeholder descriptions of content types (overview, recent developments, explainer) and do not contain specific information about the role of mycorrhizal fungi in forest ecosystems.",
+                                       "No factual content regarding mycorrhizal fungi could be extracted from the given snippets."
+                                   ],
+                 "verifiedClaims":  [
+
+                                    ],
+                 "outline":  "1. Introduction\n2. The symbiotic relationship (No information available)\n3. Benefits to trees (No information available)\n4. Benefits to fungi (No information available)\n5. Importance for forest health (No information available)\n6. Conclusion",
+                 "draft":  "## The Role of Mycorrhizal Fungi in Forest Ecosystems\n\nThis explainer aims to shed light on the crucial role mycorrhizal fungi play in the health and functioning of forest ecosystems. However, due to the absence of verified claims, specific details about their functions and interactions cannot be provided at this time.\n\n### The Symbiotic Relationship\n\nInformation regarding the symbiotic relationship between mycorrhizal fungi and trees is not available from the provided verified claims.\n\n### Benefits to Trees\n\nDetails on how mycorrhizal fungi benefit trees, such as nutrient uptake or disease resistance, are not available from the provided verified claims.\n\n### Benefits to Fungi\n\nInformation about the benefits mycorrhizal fungi receive from their association with trees is not available from the provided verified claims.\n\n### Importance for Forest Health\n\nSpecific insights into the overall importance of mycorrhizal fungi for forest health, resilience, and biodiversity are not available from the provided verified claims.\n\n### Conclusion\n\nWhile mycorrhizal fungi are known to be vital components of forest ecosystems, a detailed explanation of their specific roles and impacts cannot be provided based on the currently available verified claims.",
+                 "evaluation":  {
+                                    "factuality":  0,
+                                    "citationQuality":  0,
+                                    "readability":  40,
+                                    "completeness":  0,
+                                    "seoQuality":  50,
+                                    "overallScore":  18,
+                                    "issues":  [
+                                                   "The article contains virtually no factual information, explicitly stating that details cannot be provided due to a lack of verified claims.",
+                                                   "No sources or verified claims are provided, rendering the article unsupported.",
+                                                   "The article completely fails to deliver on its stated purpose of explaining the crucial role of mycorrhizal fungi in forest ecosystems.",
+                                                   "The repetitive nature of stating \u0027information is not available\u0027 makes the article frustrating and uninformative to read.",
+                                                   "While SEO elements are technically present, the meta description is misleading as the article provides no \u0027overview of their importance\u0027 beyond acknowledging their general vitality."
+                                               ]
+                                },
+                 "agentRuns":  [
+                                   {
+                                       "agent":  "research",
+                                       "status":  "completed",
+                                       "latencyMs":  7741,
+                                       "tokensInput":  487,
+                                       "tokensOutput":  385,
+                                       "costUsd":  0.00111,
+                                       "retries":  0,
+                                       "error":  null
+                                   },
+                                   {
+                                       "agent":  "fact-checker",
+                                       "status":  "completed",
+                                       "latencyMs":  1908,
+                                       "tokensInput":  616,
+                                       "tokensOutput":  32,
+                                       "costUsd":  0.00026,
+                                       "retries":  0,
+                                       "error":  null
+                                   },
+                                   {
+                                       "agent":  "editor",
+                                       "status":  "completed",
+                                       "latencyMs":  3534,
+                                       "tokensInput":  304,
+                                       "tokensOutput":  324,
+                                       "costUsd":  0.0009,
+                                       "retries":  0,
+                                       "error":  null
+                                   },
+                                   {
+                                       "agent":  "seo",
+                                       "status":  "completed",
+                                       "latencyMs":  7628,
+                                       "tokensInput":  439,
+                                       "tokensOutput":  169,
+                                       "costUsd":  0.00055,
+                                       "retries":  0,
+                                       "error":  null
+                                   },
+                                   {
+                                       "agent":  "publisher",
+                                       "status":  "completed",
+                                       "latencyMs":  3430,
+                                       "tokensInput":  569,
+                                       "tokensOutput":  222,
+                                       "costUsd":  0.00073,
+                                       "retries":  0,
+                                       "error":  null
+                                   },
+                                   {
+                                       "agent":  "evaluator",
+                                       "status":  "completed",
+                                       "latencyMs":  53785,
+                                       "tokensInput":  652,
+                                       "tokensOutput":  201,
+                                       "costUsd":  0.0007,
+                                       "retries":  0,
+                                       "error":  null
+                                   }
+                               ],
+                 "errors":  [
+
+                            ],
+                 "metrics":  {
+                                 "totalTokens":  4400,
+                                 "totalCostUsd":  0.00425,
+                                 "durationMs":  78037,
+                                 "model":  "gemini-2.5-flash",
+                                 "provider":  "gemini"
+                             }
+             },
+    "error":  null
+}

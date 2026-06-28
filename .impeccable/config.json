@@ -1,0 +1,32 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "space grotesk",
+        "reason": "DESIGN.md documented display fallback for CohereText (not bundled)",
+        "createdAt": "2026-06-28T11:31:50.371Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "reason": "DESIGN.md documented body/UI fallback for Unica77",
+        "createdAt": "2026-06-28T11:31:50.447Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "ibm plex mono",
+        "reason": "Monospace substitute for CohereMono; Arial fallback not monospaced",
+        "createdAt": "2026-06-28T11:31:50.526Z"
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "reason": "Mandated by DESIGN.md as CohereText display fallback",
+        "createdAt": "2026-06-28T11:31:50.606Z"
+      }
+    ]
+  }
+}
