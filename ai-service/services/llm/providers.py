@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 
@@ -128,14 +129,86 @@ def get_provider(settings: LLMSettings) -> LLMProvider:
 
 
 def _parse_json(text: str) -> dict:
-    """Extract a JSON object from model output, tolerating ```json fences."""
-    cleaned = text.strip()
-    if cleaned.startswith("```"):
-        cleaned = cleaned.split("```", 2)[1]
-        if cleaned.startswith("json"):
-            cleaned = cleaned[4:]
-    cleaned = cleaned.strip()
+    """Extract a JSON object from model output, tolerating ```json fences.
+
+    This is intentionally robust for deployed Gemini runs because the model
+    can sometimes return stray markdown, extra text, or a truncated/unterminated
+    JSON payload. We try a best-effort repair before failing.
+    """
+    cleaned = _extract_json_text(text)
     try:
         return json.loads(cleaned)
     except json.JSONDecodeError as exc:
-        raise ValueError(f"Model did not return valid JSON: {exc}") from exc
+        repaired = _repair_json(cleaned)
+        if repaired != cleaned:
+            logger.warning("Attempting JSON repair for malformed model output")
+            try:
+                return json.loads(repaired)
+            except json.JSONDecodeError:
+                pass
+        raise ValueError(f"Model did not return valid JSON: {exc}\nRaw output: {text}") from exc
+
+
+def _extract_json_text(text: str) -> str:
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        parts = cleaned.split("```", 2)
+        if len(parts) >= 3:
+            cleaned = parts[1]
+        else:
+            cleaned = parts[1] if len(parts) > 1 else cleaned
+        if cleaned.lstrip().startswith("json"):
+            cleaned = cleaned.lstrip()[4:]
+    cleaned = cleaned.strip()
+
+    # If the model returned surrounding prose or markdown, extract the first JSON object.
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start != -1 and end != -1 and end > start:
+        cleaned = cleaned[start:end + 1]
+    return cleaned.strip()
+
+
+def _repair_json(text: str) -> str:
+    repaired = _remove_trailing_commas(text)
+    if _has_unclosed_quote(repaired):
+        repaired = repaired + '"'
+    repaired = _close_unmatched_brackets(repaired)
+    return repaired
+
+
+def _remove_trailing_commas(text: str) -> str:
+    return re.sub(r",\s*([\]}])", r"\1", text)
+
+
+def _has_unclosed_quote(text: str) -> bool:
+    quotes = re.findall(r'(?<!\\)"', text)
+    return len(quotes) % 2 == 1
+
+
+def _close_unmatched_brackets(text: str) -> str:
+    stack: list[str] = []
+    in_string = False
+    escape = False
+    for char in text:
+        if escape:
+            escape = False
+            continue
+        if char == "\\":
+            escape = True
+            continue
+        if char == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if char == "{":
+            stack.append("}")
+        elif char == "[":
+            stack.append("]")
+        elif char in ("}", "]"):
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                stack.clear()
+    return text + ''.join(reversed(stack))
