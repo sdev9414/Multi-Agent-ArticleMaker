@@ -20,9 +20,12 @@ logger = logging.getLogger("agent")
 class BaseAgent(ABC):
     #: short stable id, e.g. "research". Set by each subclass.
     name: str = "agent"
+    #: model tier — "strong" for reasoning/judging agents, "small" for
+    #: mechanical ones. Only affects OpenRouter; other providers ignore it.
+    tier: str = "small"
 
     def __init__(self):
-        self.client = get_client()
+        self.client = get_client(tier=self.tier)
         self._tokens_in = 0
         self._tokens_out = 0
         self._retries = 0

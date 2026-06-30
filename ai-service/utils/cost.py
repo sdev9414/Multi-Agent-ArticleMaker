@@ -8,6 +8,9 @@ _PRICES: dict[str, tuple[float, float]] = {
     "gemini-2.5-pro": (3.5, 10.5),
     "gemini-2.5-flash": (0.30, 2.50),
     "mock-1": (0.0, 0.0),
+    # OpenRouter slugs (provider-namespaced). Refresh from openrouter.ai/models.
+    "openai/gpt-4o": (2.50, 10.0),
+    "openai/gpt-4o-mini": (0.15, 0.60),
 }
 
 _DEFAULT = (5.0, 15.0)

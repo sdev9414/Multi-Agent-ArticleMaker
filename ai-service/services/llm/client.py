@@ -66,9 +66,13 @@ class LLMClient:
         return 0.5 * (2 ** attempt)
 
 
-def get_client(*, max_retries: int = 4) -> LLMClient:
-    """Build a client for the currently-active provider."""
-    settings = get_llm_settings()
+def get_client(*, max_retries: int = 4, tier: str | None = None) -> LLMClient:
+    """Build a client for the currently-active provider.
+
+    `tier` ("strong" | "small") selects a per-agent model on OpenRouter; it is
+    ignored by single-model providers.
+    """
+    settings = get_llm_settings(tier)
     return LLMClient(get_provider(settings), max_retries=max_retries)
 
 

@@ -9,6 +9,7 @@ from prompts import load_prompt
 
 class FactCheckerAgent(BaseAgent):
     name = "fact-checker"
+    tier = "strong"  # verifying claims & weighing evidence needs the stronger model
 
     def run(self, state: dict) -> dict:
         prompt = (

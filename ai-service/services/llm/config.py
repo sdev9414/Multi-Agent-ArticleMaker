@@ -17,7 +17,7 @@ Add a new provider:
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from dotenv import load_dotenv
 
@@ -28,11 +28,12 @@ load_dotenv()
 class LLMSettings:
     """Resolved provider + model + key. One instance describes 'who answers'."""
 
-    provider: str          # "openai" | "gemini" | "mock"
+    provider: str          # "openai" | "openrouter" | "gemini" | "mock"
     model: str             # provider-specific model id
     api_key: str           # read from env; empty string ⇒ fall back to mock
     temperature: float = 0.4
     max_tokens: int = 2048
+    base_url: str = ""     # OpenAI-compatible override (OpenRouter); "" ⇒ default
 
     @property
     def has_key(self) -> bool:
@@ -58,12 +59,35 @@ def _gemini() -> LLMSettings:
     )
 
 
+def _openrouter() -> LLMSettings:
+    # OpenRouter is OpenAI-API-compatible: same SDK, different base_url. Models
+    # are namespaced, e.g. "openai/gpt-4o-mini", "google/gemini-2.5-flash".
+    return LLMSettings(
+        provider="openrouter",
+        model=os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini"),
+        api_key=os.getenv("OPENROUTER_API_KEY", ""),
+        base_url="https://openrouter.ai/api/v1",
+    )
+
+
 def _mock() -> LLMSettings:
     # No key needed; produces deterministic offline output.
     return LLMSettings(provider="mock", model="mock-1", api_key="local")
 
 
-_BUILDERS = {"openai": _openai, "gemini": _gemini, "mock": _mock}
+_BUILDERS = {"openai": _openai, "openrouter": _openrouter, "gemini": _gemini, "mock": _mock}
+
+
+# ── Per-agent model tiers (OpenRouter only) ─────────────────────────────────
+# Agents that reason/judge get the strong model; mechanical agents get the
+# cheap one. Tiers apply ONLY to OpenRouter, which routes any slug per-request.
+# Other providers have one configured model and ignore the tier.
+def _openrouter_tier_model(tier: str) -> str:
+    if tier == "strong":
+        return os.getenv("OPENROUTER_MODEL_STRONG", "openai/gpt-4o")
+    if tier == "small":
+        return os.getenv("OPENROUTER_MODEL_SMALL", "openai/gpt-4o-mini")
+    return os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 
 
 # ── CHANGE THIS LINE to pick a provider ─────────────────────────────────────
@@ -73,9 +97,11 @@ _BUILDERS = {"openai": _openai, "gemini": _gemini, "mock": _mock}
 _SELECTED = os.getenv("LLM_PROVIDER", "openai")
 
 
-def get_llm_settings() -> LLMSettings:
+def get_llm_settings(tier: str | None = None) -> LLMSettings:
     """
-    Return the active LLM settings.
+    Return the active LLM settings, optionally for a per-agent model `tier`
+    ("strong" | "small"). Tier only changes the model on OpenRouter; every
+    other provider uses its single configured model.
 
     Falls back to the mock provider automatically when the selected provider
     has no API key, so the app always runs locally without credentials.
@@ -84,4 +110,6 @@ def get_llm_settings() -> LLMSettings:
     settings = builder()
     if settings.provider != "mock" and not settings.has_key:
         return _mock()
+    if tier and settings.provider == "openrouter":
+        return replace(settings, model=_openrouter_tier_model(tier))
     return settings

@@ -50,7 +50,10 @@ class OpenAIProvider(LLMProvider):
         # TODO(api): real OpenAI call. Active once OPENAI_API_KEY is set.
         from openai import OpenAI
 
-        client = OpenAI(api_key=self.settings.api_key)
+        client = OpenAI(
+            api_key=self.settings.api_key,
+            base_url=self.settings.base_url or None,
+        )
         messages = []
         if system:
             messages.append({"role": "system", "content": system})
@@ -118,6 +121,7 @@ class MockProvider(LLMProvider):
 
 PROVIDERS: dict[str, type[LLMProvider]] = {
     "openai": OpenAIProvider,
+    "openrouter": OpenAIProvider,  # OpenAI-compatible; differs only by base_url
     "gemini": GeminiProvider,
     "mock": MockProvider,
 }

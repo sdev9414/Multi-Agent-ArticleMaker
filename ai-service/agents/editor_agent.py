@@ -9,6 +9,7 @@ from prompts import load_prompt
 
 class EditorAgent(BaseAgent):
     name = "editor"
+    tier = "strong"  # outlining & rewriting prose is the quality-critical step
 
     def run(self, state: dict) -> dict:
         prompt = (

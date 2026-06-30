@@ -16,6 +16,7 @@ def _clamp(v) -> int:
 
 class EvaluatorAgent(BaseAgent):
     name = "evaluator"
+    tier = "strong"  # scoring factuality/quality is a judgment task
 
     def run(self, state: dict) -> dict:
         prompt = (
